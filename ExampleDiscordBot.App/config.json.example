@@ -1,0 +1,15 @@
+﻿{
+	"token": "Discord Bot Token",
+	"guild": 0,
+	"channels": {
+		"error": 0,
+		"message": 0
+	},
+	"servers": [
+		{
+			"label": "Example Server",
+			"ip": "127.0.0.1",
+			"port": 30120
+		}
+	]
+}
