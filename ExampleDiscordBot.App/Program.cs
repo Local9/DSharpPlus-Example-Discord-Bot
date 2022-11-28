@@ -29,13 +29,13 @@ namespace ExampleDiscordBot.App
             {
                 Token = "My First Token",
                 TokenType = TokenType.Bot,
-                Intents = DiscordIntents.AllUnprivileged
+                Intents = DiscordIntents.AllUnprivileged,
             };
             
             if (Configuration.Channels.ContainsKey("error"))
                 BOT_ERROR_MESSAGE_CHANNEL = Configuration.Channels["error"];
 
-            if (Configuration.Channels.ContainsKey("error"))
+            if (Configuration.Channels.ContainsKey("message"))
                 BOT_MESSAGE_CHANNEL = Configuration.Channels["message"];
             
             BOT_GUILD_ID = Configuration.Guild;
