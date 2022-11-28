@@ -28,7 +28,7 @@ namespace ExampleDiscordBot.App
 
             DiscordConfiguration discordConfiguration = new()
             {
-                Token = "My First Token",
+                Token = Configuration.Token,
                 TokenType = TokenType.Bot,
                 Intents = DiscordIntents.AllUnprivileged,
                 MinimumLogLevel = LogLevel.Debug
