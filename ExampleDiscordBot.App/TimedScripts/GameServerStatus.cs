@@ -46,7 +46,7 @@ namespace ExampleDiscordBot.App.TimedScripts
                 activity.ActivityType = ActivityType.ListeningTo;
                 try
                 {
-                    serverInformation = await Utils.HttpTools.GetUrlResultAsync($"http://{server}/info.json");
+                    serverInformation = await Utils.HttpTools.GetUrlResultAsync(server.Info);
                 }
                 catch (Exception ex)
                 {
@@ -54,7 +54,7 @@ namespace ExampleDiscordBot.App.TimedScripts
                     return;
                 }
 
-                string players = await Utils.HttpTools.GetUrlResultAsync($"http://{server}/players.json");
+                string players = await Utils.HttpTools.GetUrlResultAsync(server.Players);
 
                 List<CitizenFxPlayer> lst = JsonConvert.DeserializeObject<List<CitizenFxPlayer>>(players) ?? new();
                 CitizenFxInfo info = JsonConvert.DeserializeObject<CitizenFxInfo>(serverInformation);

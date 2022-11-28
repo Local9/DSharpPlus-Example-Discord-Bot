@@ -31,6 +31,16 @@ namespace ExampleDiscordBot.App.Entities
         [JsonProperty("connect")]
         public string Connect { get; private set; }
 
+        public string Info
+        { 
+            get => $"http://{IP}:{Port}/info.json";
+        }
+
+        public string Players
+        {
+            get => $"http://{IP}:{Port}/players.json";
+        }
+
         public override string ToString() => $"{IP}:{Port}";
     }
 }
