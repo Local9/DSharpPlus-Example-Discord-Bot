@@ -3,6 +3,7 @@ using DSharpPlus.Entities;
 using ExampleDiscordBot.App.Config;
 using ExampleDiscordBot.App.Entities;
 using ExampleDiscordBot.App.TimedScripts;
+using Microsoft.Extensions.Logging;
 
 namespace ExampleDiscordBot.App
 {
@@ -30,6 +31,7 @@ namespace ExampleDiscordBot.App
                 Token = "My First Token",
                 TokenType = TokenType.Bot,
                 Intents = DiscordIntents.AllUnprivileged,
+                MinimumLogLevel = LogLevel.Debug
             };
             
             if (Configuration.Channels.ContainsKey("error"))
