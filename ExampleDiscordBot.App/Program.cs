@@ -83,7 +83,7 @@ namespace ExampleDiscordBot.App
 
         private Task Client_Ready(DiscordClient sender, DSharpPlus.EventArgs.ReadyEventArgs e)
         {
-            sender.Logger.LogInformation(BotEventId, "Perseverance is ready to process events.");
+            sender.Logger.LogInformation(BotEventId, "Discord Bot is ready to process events.");
             return Task.CompletedTask;
         }
 
