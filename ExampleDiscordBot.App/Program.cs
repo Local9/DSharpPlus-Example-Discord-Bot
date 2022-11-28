@@ -13,9 +13,9 @@ namespace ExampleDiscordBot.App
         public static ulong BOT_ERROR_MESSAGE_CHANNEL { get; private set; }
         public static ulong BOT_GUILD_ID { get; private set; }
 
-        public static DiscordClient Client { get; private set; }
+        public static DiscordClient? Client { get; private set; }
         public static Configuration Configuration { get; private set; }
-        static GameServerStatus _gameServerStatus;
+        static GameServerStatus? _gameServerStatus;
 
         static void Main(string[] args)
         {
