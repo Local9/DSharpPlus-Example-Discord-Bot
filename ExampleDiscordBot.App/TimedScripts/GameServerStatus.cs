@@ -35,7 +35,11 @@ namespace ExampleDiscordBot.App.TimedScripts
                 string serverInformation = string.Empty;
 
                 Server server = servers[serverIndex];
-                serverIndex++;
+
+                if (serverIndex == servers.Count - 1)
+                    serverIndex = 0;
+                else
+                    serverIndex++;
 
                 DiscordActivity activity = new();
                 activity.Name = "Server Offline";
@@ -52,16 +56,16 @@ namespace ExampleDiscordBot.App.TimedScripts
 
                 string players = await Utils.HttpTools.GetUrlResultAsync($"http://{server.IP}/players.json");
 
-                List<CitizenFxPlayer> lst = JsonConvert.DeserializeObject<List<CitizenFxPlayer>>(players);
+                List<CitizenFxPlayer> lst = JsonConvert.DeserializeObject<List<CitizenFxPlayer>>(players) ?? new();
                 CitizenFxInfo info = JsonConvert.DeserializeObject<CitizenFxInfo>(serverInformation);
-                activity.Name = $"{lst.Count}/{info.Variables["sv_maxClients"]} players on {server.Label}";
+                activity.Name = $"{lst?.Count}/{info.Variables["sv_maxClients"]} players on {server.Label}";
 
                 await _discordClient.UpdateStatusAsync(activity);
 
             }
             catch (Exception ex)
             {
-                Program.SendErrorMessage($"CRITICAL EXCEPTION [GameServerStatus]\n{ex.Message}\n{ex.StackTrace}");
+                await Program.SendErrorMessage($"CRITICAL EXCEPTION [GameServerStatus]\n{ex.Message}\n{ex.StackTrace}");
             }
         }
     }
