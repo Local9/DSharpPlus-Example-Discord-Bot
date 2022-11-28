@@ -47,27 +47,29 @@ namespace ExampleDiscordBot.App
 
             _gameServerStatus = new(Client);
 
-            SendLogMessage($"Discord Bot has started");
+            await SendLogMessage($"Discord Bot has started");
 
             await Task.Delay(-1);
         }
 
-        public async static void SendErrorMessage(string message)
+        public async static Task SendErrorMessage(string message)
         {
-            DiscordChannel discordChannel = await Client.GetChannelAsync(BOT_ERROR_MESSAGE_CHANNEL);
-            discordChannel.SendMessageAsync(message);
+            await SendMessage(BOT_ERROR_MESSAGE_CHANNEL, message);
         }
 
-        public async static void SendLogMessage(string message)
+        public async static Task SendLogMessage(string message)
         {
-            DiscordChannel discordChannel = await Client.GetChannelAsync(BOT_MESSAGE_CHANNEL);
-            discordChannel.SendMessageAsync(message);
+            await SendMessage(BOT_MESSAGE_CHANNEL, message);
         }
 
-        public async static void SendMessage(ulong channelId, string message)
+        public async static Task SendMessage(ulong channelId, string message)
         {
-            DiscordChannel discordChannel = await Client.GetChannelAsync(channelId);
-            discordChannel.SendMessageAsync(message);
+            if (Client is null)
+                return;
+            
+            DiscordGuild discordGuild = await Client.GetGuildAsync(BOT_GUILD_ID);
+            DiscordChannel discordChannel = discordGuild.GetChannel(channelId);
+            await discordChannel.SendMessageAsync(message);
         }
     }
 }
